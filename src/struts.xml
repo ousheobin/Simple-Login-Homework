@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="main" namespace="/" extends="struts-default">
+			<action name="login" class="cn.oushaobin.crm.controller.LoginAction">
+				<result name="error">index.jsp</result>
+			</action>
+			<action name="logout" class="cn.oushaobin.crm.controller.LoginAction" method="logout">
+				<result name="success" type="redirect">index.jsp</result>
+			</action>
+			<action name="register" class="cn.oushaobin.crm.controller.CustomerAction" method="register">
+				<result name="success">index.jsp</result>
+				<result name="input">register.jsp</result>
+				<result name="error">register.jsp</result>
+			</action>
+			
+    </package>
+    
+    <package name="customer" namespace="/customer" extends="main">
+    	<action name="index" class="cn.oushaobin.crm.controller.CustomerAction" method="showIndex">
+				<result name="success">/WEB-INF/jsp/customer.jsp</result>
+			</action>
+    </package>
+    
+    <package name="admin" namespace="/admin" extends="main">
+    	<action name="index" class="cn.oushaobin.crm.controller.AdminAction">
+				<result name="success">/WEB-INF/jsp/admin.jsp</result>
+				<result name="error" type="redirect">../index.jsp</result>
+			</action>
+    </package>
+	
+</struts>
